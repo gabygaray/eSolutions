@@ -74,7 +74,9 @@ const convertJson = (event) => {
     }
   }
 
-  return alert("JSON PARSEADO :)"), console.log(json);
+  return (
+    alert("JSON PARSEADO"), console.log(json), (event.target.text.value = "")
+  );
 };
 
 form.addEventListener("submit", convertJson);
