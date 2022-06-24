@@ -1,4 +1,7 @@
-/**Se realizaron dos funciones, donde la primera limpia el codigo y sustituye el value de la prop que posee un array de objetos anidados momentaneamente para poder realizar correctamente el split y poder iterar sobre las diferentes props. En la segunda función se trabaja especificamente en aquel value que posea [], limpiando el string, y luego pusheando fragmentos de string que posean estructura de objeto para convertirlos en objetos literales.  */
+/**Se realizaron dos funciones, donde la primera limpia el codigo y sustituye el value de la prop que posee un array de objetos 
+anidados momentaneamente para poder realizar correctamente el split y poder iterar sobre las diferentes props. 
+En la segunda función se trabaja especificamente en aquel value que posea [], limpiando el string, y luego pusheando fragmentos 
+de string que posean estructura de objeto para convertirlos en objetos literales.  */
 
 const form = document.querySelector("#form");
 
