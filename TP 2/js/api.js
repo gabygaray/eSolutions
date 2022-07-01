@@ -2,43 +2,71 @@ const users = "https://jsonplaceholder.typicode.com/users";
 const albums = "https://jsonplaceholder.typicode.com/users/1/albums";
 
 const promiseWay = (url) => {
-  new Promise((resolve, reject) => {
-    resolve(
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-    );
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        resolve(data);
+      });
   });
 };
 
-// promiseWay(users);
-
 const awaitAsyncWay = async (url) => {
   const response = await fetch(url);
-  const data = await response.json();
-  return console.log(data);
+  const json = await response.json();
+  return json;
 };
 
-// awaitAsyncWay(users);
-
-const getUsers = (fuctionName) => {
+const getUsers = async (fuctionName) => {
   const usersUrl = "https://jsonplaceholder.typicode.com/users";
-  let data = [];
 
-  if (fuctionName === promiseWay) {
-    return (data = promiseWay(usersUrl));
-  } else if (fuctionName === awaitAsyncWay) {
-    return (data = awaitAsyncWay(usersUrl));
-  } else {
-    console.log("Ingrese un nombre de función correcto");
-  }
+  const getData = () => {
+    if (fuctionName === promiseWay) {
+      return promiseWay(usersUrl);
+    } else if (fuctionName === awaitAsyncWay) {
+      return awaitAsyncWay(usersUrl);
+    } else {
+      console.log("Ingrese un nombre de función correcto");
+    }
+  };
 
-  const [] = data;
+  const usersData = await getData();
+  let users = [];
 
-  console.log(data);
+  const userObj = () => {
+    for (let user of usersData) {
+      const {
+        address: {
+          city,
+          geo: { lng },
+          street,
+          suite,
+        },
+        company,
+        email,
+        id,
+        name,
+        username,
+        website,
+      } = user;
+
+      users.push({
+        address: { city, geo: { lng }, street, suite },
+        company,
+        email,
+        id,
+        name,
+        username,
+        website,
+      });
+    }
+    return users;
+  };
+
+  userObj();
+
+  return console.log(users);
 };
-
-getUsers(awaitAsyncWay);
 
 // const callbackWay = () => {
 //     const response = fetch(url)
@@ -58,4 +86,4 @@ getUsers(awaitAsyncWay);
 //     },
 //     falloCallback
 //   );
-// }, falloCallback);
+// }, falloCallback)
