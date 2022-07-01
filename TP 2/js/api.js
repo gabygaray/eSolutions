@@ -1,6 +1,3 @@
-const users = "https://jsonplaceholder.typicode.com/users";
-const albums = "https://jsonplaceholder.typicode.com/users/1/albums";
-
 const promiseWay = (url) => {
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -18,31 +15,31 @@ const awaitAsyncWay = async (url) => {
 };
 
 // const callbackWay = (url) => {
+//   const getJson = () => {
+//     const getData = () => {
+//       return fetch(url);
+//     };
+//     getData().then((response) => response.json());
+//   };
 //   return getJson();
 // };
 
-// const getData = () => {
-//   return fetch(url);
-// };
-
-// const getJson = () => {
-//   getData().then((response) => response.json());
-// };
+const getData = (fuctionName, url) => {
+  if (fuctionName === promiseWay) {
+    return promiseWay(url);
+  } else if (fuctionName === awaitAsyncWay) {
+    return awaitAsyncWay(url);
+  } else if (fuctionName === callbackWay) {
+    return callbackWay(url);
+  } else {
+    console.log("Ingrese un nombre de función correcto");
+  }
+};
 
 const getUsers = async (fuctionName) => {
   const usersUrl = "https://jsonplaceholder.typicode.com/users";
 
-  const getData = () => {
-    if (fuctionName === promiseWay) {
-      return promiseWay(usersUrl);
-    } else if (fuctionName === awaitAsyncWay) {
-      return awaitAsyncWay(usersUrl);
-    } else {
-      console.log("Ingrese un nombre de función correcto");
-    }
-  };
-
-  const usersData = await getData();
+  const usersData = await getData(fuctionName, usersUrl);
 
   return filterUsers(usersData);
 };
@@ -80,18 +77,11 @@ const filterUsers = (usersData) => {
   return console.log(users);
 };
 
-// hazAlgo(function (resultado) {
-//   hazAlgoMas(
-//     resultado,
-//     function (nuevoResultado) {
-//       hazLaTerceraCosa(
-//         nuevoResultado,
-//         function (resultadoFinal) {
-//           console.log("Obtenido el resultado final: " + resultadoFinal);
-//         },
-//         falloCallback
-//       );
-//     },
-//     falloCallback
-//   );
-// }, falloCallback)
+const getAlbums = async (userNumber, fuctionName) => {
+  const albumsUrl =
+    "https://jsonplaceholder.typicode.com/users/" + userNumber + "/albums";
+
+  const albumsData = await getData(fuctionName, albumsUrl);
+
+  return console.log(albumsData);
+};
