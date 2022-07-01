@@ -4,6 +4,9 @@ const promiseWay = (url) => {
       .then((response) => response.json())
       .then((data) => {
         resolve(data);
+      })
+      .catch((error) => {
+        reject(error);
       });
   });
 };
@@ -14,16 +17,6 @@ const awaitAsyncWay = async (url) => {
   return json;
 };
 
-// const callbackWay = (url) => {
-//   const getJson = () => {
-//     const getData = () => {
-//       return fetch(url);
-//     };
-//     getData().then((response) => response.json());
-//   };
-//   return getJson();
-// };
-
 const getData = (fuctionName, url) => {
   if (fuctionName === promiseWay) {
     return promiseWay(url);
@@ -31,17 +24,19 @@ const getData = (fuctionName, url) => {
     return awaitAsyncWay(url);
   } else if (fuctionName === callbackWay) {
     return callbackWay(url);
-  } else {
-    console.log("Ingrese un nombre de función correcto");
   }
 };
 
 const getUsers = async (fuctionName) => {
   const usersUrl = "https://jsonplaceholder.typicode.com/users";
 
-  const usersData = await getData(fuctionName, usersUrl);
+  try {
+    const usersData = await getData(fuctionName, usersUrl);
 
-  return filterUsers(usersData);
+    return filterUsers(usersData);
+  } catch (error) {
+    console.error("Algo salió mal");
+  }
 };
 
 const filterUsers = (usersData) => {
@@ -81,7 +76,10 @@ const getAlbums = async (userNumber, fuctionName) => {
   const albumsUrl =
     "https://jsonplaceholder.typicode.com/users/" + userNumber + "/albums";
 
-  const albumsData = await getData(fuctionName, albumsUrl);
-
-  return console.log(albumsData);
+  try {
+    const albumsData = await getData(fuctionName, albumsUrl);
+    return console.log(albumsData);
+  } catch (error) {
+    console.error("Algo salió mal");
+  }
 };
