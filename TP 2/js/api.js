@@ -17,6 +17,18 @@ const awaitAsyncWay = async (url) => {
   return json;
 };
 
+// const callbackWay = (url) => {
+//   return getJson();
+// };
+
+// const getData = () => {
+//   return fetch(url);
+// };
+
+// const getJson = () => {
+//   getData().then((response) => response.json());
+// };
+
 const getUsers = async (fuctionName) => {
   const usersUrl = "https://jsonplaceholder.typicode.com/users";
 
@@ -31,46 +43,42 @@ const getUsers = async (fuctionName) => {
   };
 
   const usersData = await getData();
+
+  return filterUsers(usersData);
+};
+
+const filterUsers = (usersData) => {
   let users = [];
 
-  const userObj = () => {
-    for (let user of usersData) {
-      const {
-        address: {
-          city,
-          geo: { lng },
-          street,
-          suite,
-        },
-        company,
-        email,
-        id,
-        name,
-        username,
-        website,
-      } = user;
+  usersData.map((user) => {
+    const {
+      address: {
+        city,
+        geo: { lng },
+        street,
+        suite,
+      },
+      company,
+      email,
+      id,
+      name,
+      username,
+      website,
+    } = user;
 
-      users.push({
-        address: { city, geo: { lng }, street, suite },
-        company,
-        email,
-        id,
-        name,
-        username,
-        website,
-      });
-    }
-    return users;
-  };
-
-  userObj();
+    return users.push({
+      address: { city, geo: { lng }, street, suite },
+      company,
+      email,
+      id,
+      name,
+      username,
+      website,
+    });
+  });
 
   return console.log(users);
 };
-
-// const callbackWay = () => {
-//     const response = fetch(url)
-// };
 
 // hazAlgo(function (resultado) {
 //   hazAlgoMas(
