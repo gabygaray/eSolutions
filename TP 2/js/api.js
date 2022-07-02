@@ -3,12 +3,12 @@
  *  consola. En cuanto a getAlbums() la función recibe como parámetro el número de user y el nombre
  * de la función a utilizar para obtener datos.*/
 
-console.log(`La función getUser(fuctionName)  puede recibir como parámetro:
+console.log(`La función getUser(functionName)  puede recibir como parámetro:
   - promiseWay
   - awaitAsyncWay
   - callbackWay`);
 
-console.log(`La función getAlbums(userNumber, fuctionName)  recibe como primer parámetro el número de usuario y como segundo parámetro:
+console.log(`La función getAlbums(userNumber, functionName)  recibe como primer parámetro el número de usuario y como segundo parámetro:
   - promiseWay
   - awaitAsyncWay
   - callbackWay`);
@@ -40,21 +40,21 @@ const toJson = (response) => {
   return response.json().then((data) => data);
 };
 
-const getData = (fuctionName, url) => {
-  if (fuctionName === promiseWay) {
+const getData = (functionName, url) => {
+  if (functionName === promiseWay) {
     return promiseWay(url);
-  } else if (fuctionName === awaitAsyncWay) {
+  } else if (functionName === awaitAsyncWay) {
     return awaitAsyncWay(url);
-  } else if (fuctionName === callbackWay) {
+  } else if (functionName === callbackWay) {
     return callbackWay(url, toJson);
   }
 };
 
-const getUsers = async (fuctionName) => {
+const getUsers = async (functionName) => {
   const usersUrl = "https://jsonplaceholder.typicode.com/users";
 
   try {
-    const usersData = await getData(fuctionName, usersUrl);
+    const usersData = await getData(functionName, usersUrl);
 
     console.log(transformUsers(usersData));
   } catch (error) {
@@ -91,12 +91,12 @@ const transformUsers = (usersData) => {
   });
 };
 
-const getAlbums = async (userNumber, fuctionName) => {
+const getAlbums = async (userNumber, functionName) => {
   const albumsUrl =
     "https://jsonplaceholder.typicode.com/users/" + userNumber + "/albums";
 
   try {
-    const albumsData = await getData(fuctionName, albumsUrl);
+    const albumsData = await getData(functionName, albumsUrl);
     return console.log(albumsData);
   } catch (error) {
     console.error("Algo salió mal");
