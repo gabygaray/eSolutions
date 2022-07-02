@@ -1,3 +1,18 @@
+/** Mediante 3 funciones obtenemos los datos de la API, luego en el caso de getUsers() los datos
+ * obtenidos son transformados mediante desestructuración según requisitos y mostrados por
+ *  consola. En cuanto a getAlbums() la función recibe como parámetro el número de user y el nombre
+ * de la función a utilizar para obtener datos.*/
+
+console.log(`La función getUser(fuctionName)  puede recibir como parámetro:
+  - promiseWay
+  - awaitAsyncWay
+  - callbackWay`);
+
+console.log(`La función getAlbums(userNumber, fuctionName)  recibe como primer parámetro el número de usuario y como segundo parámetro:
+  - promiseWay
+  - awaitAsyncWay
+  - callbackWay`);
+
 const promiseWay = (url) => {
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -25,7 +40,6 @@ const toJson = (response) => {
   return response.json().then((data) => data);
 };
 
-// Proceso
 const getData = (fuctionName, url) => {
   if (fuctionName === promiseWay) {
     return promiseWay(url);
