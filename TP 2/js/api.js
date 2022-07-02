@@ -17,13 +17,22 @@ const awaitAsyncWay = async (url) => {
   return json;
 };
 
+const callbackWay = (url, callback) => {
+  return fetch(url).then(callback);
+};
+
+const toJson = (response) => {
+  return response.json().then((data) => data);
+};
+
+// Proceso
 const getData = (fuctionName, url) => {
   if (fuctionName === promiseWay) {
     return promiseWay(url);
   } else if (fuctionName === awaitAsyncWay) {
     return awaitAsyncWay(url);
   } else if (fuctionName === callbackWay) {
-    return callbackWay(url);
+    return callbackWay(url, toJson);
   }
 };
 
@@ -33,16 +42,14 @@ const getUsers = async (fuctionName) => {
   try {
     const usersData = await getData(fuctionName, usersUrl);
 
-    return filterUsers(usersData);
+    console.log(transformUsers(usersData));
   } catch (error) {
     console.error("Algo salió mal");
   }
 };
 
-const filterUsers = (usersData) => {
-  let users = [];
-
-  usersData.map((user) => {
+const transformUsers = (usersData) => {
+  return usersData.map((user) => {
     const {
       address: {
         city,
@@ -58,7 +65,7 @@ const filterUsers = (usersData) => {
       website,
     } = user;
 
-    return users.push({
+    return {
       address: { city, geo: { lng }, street, suite },
       company,
       email,
@@ -66,10 +73,8 @@ const filterUsers = (usersData) => {
       name,
       username,
       website,
-    });
+    };
   });
-
-  return console.log(users);
 };
 
 const getAlbums = async (userNumber, fuctionName) => {
