@@ -5,12 +5,12 @@
 
 console.log(`La función getUser(functionName)  puede recibir como parámetro:
   - promiseWay
-  - awaitAsyncWay
+  - asyncAwaitWay
   - callbackWay`);
 
 console.log(`La función getAlbums(userNumber, functionName)  recibe como primer parámetro el número de usuario y como segundo parámetro:
   - promiseWay
-  - awaitAsyncWay
+  - asyncAwaitWay
   - callbackWay`);
 
 const promiseWay = (url) => {
@@ -26,7 +26,7 @@ const promiseWay = (url) => {
   });
 };
 
-const awaitAsyncWay = async (url) => {
+const asyncAwaitWay = async (url) => {
   const response = await fetch(url);
   const json = await response.json();
   return json;
@@ -43,8 +43,8 @@ const toJson = (response) => {
 const getData = (functionName, url) => {
   if (functionName === promiseWay) {
     return promiseWay(url);
-  } else if (functionName === awaitAsyncWay) {
-    return awaitAsyncWay(url);
+  } else if (functionName === asyncAwaitWay) {
+    return asyncAwaitWay(url);
   } else if (functionName === callbackWay) {
     return callbackWay(url, toJson);
   }
