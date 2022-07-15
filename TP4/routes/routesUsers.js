@@ -8,12 +8,11 @@ router.post("/users", async (req, res) => {
   try {
     const { company } = req.body;
     const companies = await ModelCompany.findById(company);
-
     const data = new Model({
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
-      company: companies.name,
+      company: companies,
     });
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);

@@ -9,7 +9,7 @@ const mongoString = process.env.DATABASE_URL;
 
 //Sección de conección a la base de datoos
 mongoose.connect(mongoString);
-const database = mongoose.connection; // Conección a la base de datos
+const database = mongoose.connection;
 
 database.on("error", (error) => {
   console.error(error);
@@ -21,11 +21,11 @@ database.once("connected", () => {
 
 //Sección de aplicación (servidor web).
 const app = express();
-app.use(cors()); //Evita errores de operaciones cruzadas o el uso compartido de recursos cruzados.
+app.use(cors());
 app.use(express.json());
 
 const routes = require("./routes/routes");
-app.use("/api", routes); //Primer argumento es el endpoint base, y como segundo argumento el enrutador.
+app.use("/api", routes);
 
 app.listen(process.env.PORT, process.env.HOST, () => {
   console.log(
