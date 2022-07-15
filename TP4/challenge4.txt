@@ -1,0 +1,52 @@
+https://jsonplaceholder.typicode.com/users
+(No es necesario traer los datos de la api, solo es para usar de modelos)
+
+User
+
+    name:
+    username:
+    email:
+
+    Company
+
+        name:
+
+Esta estructura es la que tienen que modelar.
+
+CRUD para Users
+CRUD para Companies
+
+Tengo que poder guardar una compañía
+Tengo que poder guardar un usuario asociandolo a esa compañía.
+
+Un usuario pertenece a una sola compañía.
+Pero una compañia puede tener muchos usuarios.
+
+GET /users
+GET /users/:id
+POST /users
+PUT /users/:id
+DELETE /users/:id
+
+GET /companies (vienen sólo las compañías, no con los usuarios que posee)
+GET /companies/:id
+POST /companies
+PUT /companies/:id
+DELETE /companies/:id
+
+Cuando quiero hacer un CRUD de usuarios, puedo agregarlo a una compañia en particular
+Si esa compañia existe (buscar la compañia por nombre) asociarlo al usuario.
+
+Cuando traiga todos los usuarios me traiga la compañia a la que ese usuario pertenece y que sea la misma que esta en la base de datos.
+
+Voy a tener dos esquemas distintos en la base de datos. Uno para Usuario y otro para Compañia
+
+Cuando cree un usuario, se debería mandar con el usuario el ID de la compañia a la que ese usuario pertenece.
+
+Cuando modifico en el usuario la compañia, no queda asociado a dos compañías si no que va al ID de la otra compañia.
+
+REQUISITO Separar en una js las rutas para usuarios y para compañías (no en el index, sino en un archivo -que lógicamente será importado y usado en el index- pero que estará en la carpeta routes).
+
+Es decir que tengo que tener un archivo en routes que me derive si quiero aplicar un metodo en un usuario o a una compañia. Hay que tener una sola carga de rutas en el index, pero en el archivo de rutas todas las rutas que necesitemos. Cada una de las rutas tendra su GET POST PUT DELETE.
+
+También en la carpeta de modelos tendremos dos modelos, uno para usuarios y uno para compañia.
