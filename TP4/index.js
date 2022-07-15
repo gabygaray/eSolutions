@@ -24,7 +24,7 @@ const app = express();
 app.use(cors()); //Evita errores de operaciones cruzadas o el uso compartido de recursos cruzados.
 app.use(express.json());
 
-const routes = require("./routes/routesUsers");
+const routes = require("./routes/routes");
 app.use("/api", routes); //Primer argumento es el endpoint base, y como segundo argumento el enrutador.
 
 app.listen(process.env.PORT, process.env.HOST, () => {
