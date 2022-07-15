@@ -1,5 +1,6 @@
 const express = require("express");
 const Model = require("../models/companyModel");
+const ModelUser = require("../models/userModel");
 const router = express.Router();
 
 //Método POST para la creaión de datos en la BD.
@@ -41,18 +42,44 @@ router.put("/companies/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
-    const options = { new: true }; //Significa que lo va a guardar en la base de datos
+
+    const companyToUpdate = await Model.findById(id);
+    const users = await ModelUser.find();
+
+    const options = { new: true };
     const data = await Model.findByIdAndUpdate(id, updatedData, options);
+
+    users.forEach((user) => {
+      console.log(user.company.name);
+      user.company.name === companyToUpdate.name
+        ? (user.company = data)
+        : user.company;
+      user.save();
+    });
+
+    console.log(data);
+
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Método POST para la creaión de datos en la BD.
+//Método DELETE para la creaión de datos en la BD.
 router.delete("/companies/:id", async (req, res) => {
   try {
     const id = req.params.id;
+
+    const companyToDelete = await Model.findById(id);
+    const users = await ModelUser.find();
+
+    users.forEach((user) => {
+      user.company.name === companyToDelete.name
+        ? (user.company.name = "Aún no posee")
+        : user.company;
+      user.save();
+    });
+
     const data = await Model.findByIdAndDelete(id);
     res.status(200).json(data);
   } catch (error) {

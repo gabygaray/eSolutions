@@ -52,7 +52,7 @@ router.put("/users/:id", async (req, res) => {
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
-      company: companies.name,
+      company: companies,
     };
 
     const options = { new: true };
@@ -63,7 +63,7 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
-//Método POST para la creaión de datos en la BD.
+//Método DELETE para la creaión de datos en la BD.
 router.delete("/users/:id", async (req, res) => {
   try {
     const id = req.params.id;
