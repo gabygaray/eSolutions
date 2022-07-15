@@ -1,17 +1,20 @@
 const express = require("express");
 const Model = require("../models/userModel");
+const ModelCompany = require("../models/companyModel");
 const router = express.Router();
 
 //Método POST para la creaión de datos en la BD.
 router.post("/users", async (req, res) => {
-  const data = new Model({
-    name: req.body.name,
-    username: req.body.username,
-    email: req.body.email,
-    company: req.body.company,
-  });
-
   try {
+    const { company } = req.body;
+    const companies = await ModelCompany.findById(company);
+
+    const data = new Model({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      company: companies.name,
+    });
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
   } catch (error) {
@@ -42,8 +45,17 @@ router.get("/users/:id", async (req, res) => {
 //Método PUT(PATCH) para actualizar un dato de datos en la BD.
 router.put("/users/:id", async (req, res) => {
   try {
+    const { company } = req.body;
+    const companies = await ModelCompany.findById(company);
+
     const id = req.params.id;
-    const updatedData = req.body;
+    const updatedData = {
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      company: companies.name,
+    };
+
     const options = { new: true };
     const data = await Model.findByIdAndUpdate(id, updatedData, options);
     res.status(200).json(data);
