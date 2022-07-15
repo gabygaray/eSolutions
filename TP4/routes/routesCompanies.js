@@ -4,7 +4,7 @@ const ModelUser = require("../models/userModel");
 const router = express.Router();
 
 //Método POST para la creaión de datos en la BD.
-router.post("/companies", async (req, res) => {
+router.post("/", async (req, res) => {
   const data = new Model({
     name: req.body.name,
   });
@@ -18,7 +18,7 @@ router.post("/companies", async (req, res) => {
 });
 
 //Método GET para la obtención de todos los datos de la BD.
-router.get("/companies", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const data = await Model.find();
     res.status(200).json(data);
@@ -28,7 +28,7 @@ router.get("/companies", async (req, res) => {
 });
 
 //Método GET para obtención de un dato de la BD.
-router.get("/companies/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
     res.status(200).json(data);
@@ -37,8 +37,8 @@ router.get("/companies/:id", async (req, res) => {
   }
 });
 
-//Método PUT(PATCH) para actualizar un dato de datos en la BD.
-router.put("/companies/:id", async (req, res) => {
+//Método PUT para actualizar un dato de datos en la BD que también impacta en Users.
+router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
@@ -50,14 +50,11 @@ router.put("/companies/:id", async (req, res) => {
     const data = await Model.findByIdAndUpdate(id, updatedData, options);
 
     users.forEach((user) => {
-      console.log(user.company.name);
       user.company.name === companyToUpdate.name
         ? (user.company = data)
         : user.company;
       user.save();
     });
-
-    console.log(data);
 
     res.status(200).json(data);
   } catch (error) {
@@ -65,8 +62,8 @@ router.put("/companies/:id", async (req, res) => {
   }
 });
 
-//Método DELETE para la creaión de datos en la BD.
-router.delete("/companies/:id", async (req, res) => {
+//Método DELETE para la creaión de datos en la BD que también impacta en Users.
+router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
 

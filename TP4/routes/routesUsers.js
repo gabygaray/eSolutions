@@ -4,7 +4,7 @@ const ModelCompany = require("../models/companyModel");
 const router = express.Router();
 
 //Método POST para la creaión de datos en la BD.
-router.post("/users", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { company } = req.body;
     const companies = await ModelCompany.findById(company);
@@ -22,7 +22,7 @@ router.post("/users", async (req, res) => {
 });
 
 //Método GET para la obtención de todos los datos de la BD.
-router.get("/users", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const data = await Model.find();
     res.status(200).json(data);
@@ -32,7 +32,7 @@ router.get("/users", async (req, res) => {
 });
 
 //Método GET para obtención de un dato de la BD.
-router.get("/users/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
     res.status(200).json(data);
@@ -42,7 +42,7 @@ router.get("/users/:id", async (req, res) => {
 });
 
 //Método PUT(PATCH) para actualizar un dato de datos en la BD.
-router.put("/users/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { company } = req.body;
     const companies = await ModelCompany.findById(company);
@@ -64,7 +64,7 @@ router.put("/users/:id", async (req, res) => {
 });
 
 //Método DELETE para la creaión de datos en la BD.
-router.delete("/users/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
