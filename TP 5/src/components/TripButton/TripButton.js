@@ -32,48 +32,56 @@ export default function TripButton({ type, name }) {
   const classes = useStyles();
   const { setPlaces, places } = useContext(TripContext);
 
-  const cancelPlace = (places) => {
-    if (places[places.length - 1] === "Cataratas Del Iguazú, Misiones") {
+  const cancelPlace = () => {
+    const lastPlace = places[places.length - 1];
+
+    if (lastPlace === "Cataratas del Iguazú, Misiones") {
+      console.clear();
       console.log(
-        `Su reserva a "Cataratas del Iguazú, Misiones" ha sido canselada.`
+        `Su reserva a "Cataratas del Iguazú, Misiones" ha sido cancelada.`
       );
-      setPlaces(places.pop());
-    } else if (places[places.length - 1] === "Mar Del Plata, Buenos Aires") {
+      places.pop();
+      setPlaces(places);
+    } else if (lastPlace === "Mar del Plata, Buenos Aires") {
+      console.clear();
       console.log(
-        `Su reserva a "Mar Del Plata, Buenos Aires" ha sido canselada.`
+        `Su reserva a "Mar Del Plata, Buenos Aires" ha sido cancelada.`
       );
-      setPlaces(places.pop());
+      places.pop();
+      setPlaces(places);
     } else {
-      console.log("Su PROMO no se puede cancelar, lo lamentamos");
-      console.log(places[places.length - 1]);
+      console.clear();
+      console.log("Su acción no se puede cancelar, lo lamentamos");
     }
   };
 
   const buttonSelected = (type, name) => {
     switch (type) {
       case "PROMO":
+        console.clear();
         setPlaces(name);
         break;
 
       case "RESERVAR":
         setPlaces(name);
+        console.clear();
         console.log(`Ha reservado con éxito su viaje a "${name}".`);
         break;
 
       case "COMPRAR":
         setPlaces(name);
+        console.clear();
         console.log(`Ha comprado con éxito su viaje a "${name}".`);
         break;
 
       case "CANCELAR":
-        cancelPlace(places);
+        cancelPlace();
         break;
 
       default:
+        console.clear();
         console.log("Opción no valida");
     }
-
-    return console.log(places);
   };
 
   return (

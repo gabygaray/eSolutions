@@ -16,6 +16,7 @@ const useStyles = createUseStyles({
   },
   cart: {
     marginRight: "10px",
+    fontSize: "30px",
   },
   list: {
     display: "flex",
@@ -34,21 +35,21 @@ export default function TripSummary() {
   const classes = useStyles();
   const { places } = useContext(TripContext);
 
-  const summaryPlaces = places.filter(
-    (place) =>
-      place === "Perito Moreno, Santa Cruz" ||
-      place === "Mar del Plata, Buenos Aires"
-  );
-
   return (
     <div className={classes.wrapper}>
       <div className={classes.cart}>
-        <b>CARRO:</b>
+        <b>Carro</b>
       </div>
       <ul className={classes.list}>
-        {summaryPlaces.map((name, index) => (
-          <li key={index}>{name}</li>
-        ))}
+        {places
+          .filter(
+            (place) =>
+              place === "Perito Moreno, Santa Cruz" ||
+              place === "Mar del Plata, Buenos Aires"
+          )
+          .map((name, index) => (
+            <li key={index}>{name}</li>
+          ))}
       </ul>
     </div>
   );

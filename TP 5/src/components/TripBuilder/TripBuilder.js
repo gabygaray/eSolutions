@@ -2,10 +2,12 @@ import React from "react";
 import TripItem from "../TripItem/TripItem";
 import { createUseStyles } from "react-jss";
 import TripButton from "../TripButton/TripButton";
+import TripOff from "../TripOff/TripOff";
 
 const useStyles = createUseStyles({
   wrapper: {
     marginTop: 100,
+    marginBottom: 100,
   },
   cards: {
     display: "flex",
@@ -43,6 +45,7 @@ export default function TripBuilder() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
+      <TripOff />
       <TripButton type="CANCELAR" />
       <div className={classes.cards}>
         {places.map((places) => (

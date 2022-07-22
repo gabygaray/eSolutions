@@ -6,16 +6,19 @@ import TripButton from "../TripButton/TripButton";
 const useStyles = createUseStyles({
   wrapper: {},
   card: {
+    display: "flex",
+    flexWrap: "wrap",
     border: "1px solid rgb(221, 221, 221)",
     borderRadius: 12,
     boxShadow: "rgba(0, 0, 0, 0.12) 0px 6px 16px",
     margin: "20px 20px 10px 20px",
     padding: 24,
     position: "relative",
-    textAlign: "center",
-    textTransform: "capitalize",
     width: 200,
     height: 400,
+  },
+  name: {
+    margin: 10,
   },
   image: {
     width: "100%",
@@ -23,6 +26,12 @@ const useStyles = createUseStyles({
   text: {
     textAlign: "justify",
     fontSize: "13px",
+    height: "125px",
+  },
+  price: {
+    display: "flex",
+    justifyContent: "right",
+    width: "100%",
   },
 });
 
@@ -37,7 +46,7 @@ export default function TripItem({ image, name, text, price, typeButton }) {
           alt={name}
           aria-label={name}
         ></img>
-        <h3>{name}</h3>
+        <h3 className={classes.name}>{name}</h3>
         <p className={classes.text}>{text}</p>
         <h2 className={classes.price}>{price}</h2>
       </div>
