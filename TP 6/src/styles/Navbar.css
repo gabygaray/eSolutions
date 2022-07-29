@@ -1,0 +1,84 @@
+*{
+ padding: 0;
+ margin: 0;   
+}
+
+.navbar-wrapper {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 5vh;
+    padding: 40px 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    box-shadow: rgb(0 0 0 / 15%) 0px 3px 3px ;
+    z-index: 1;
+}
+
+.myblog {
+    align-items: center;
+    min-width: 160px;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: bold;    
+    text-decoration: none;
+    color: #fff;
+    margin: 15px;
+    text-align: center;
+
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: fit-content;
+    gap: 10px;
+    margin: 15px;
+    
+}
+
+.navbar-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 37px;
+    width: 150px;
+    font-size: 25px;
+    line-height: 20px;
+    color: white;
+    font-style: italic;
+
+}
+
+li{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+    height: 30px;
+
+    height: 37px;
+    width: 130px;
+    background:linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
