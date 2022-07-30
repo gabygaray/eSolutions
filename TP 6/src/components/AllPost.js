@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/AllPost.css";
 import Post from "./Post";
-import { getPost } from "../services/PostService";
+import { getPost, deletePost } from "../services/PostService";
 import UserContext from "../services/UserContext";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export default function AllPost() {
     };
 
     getData();
-  }, [userId]);
+  }, [userId, userPosts]);
 
   return (
     <div>

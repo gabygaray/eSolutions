@@ -13,5 +13,14 @@ export function setPost(post) {
     },
     body: JSON.stringify(post),
     method: "POST",
-  }).then((data) => data.json());
+  });
+}
+
+export function deletePost(postId) {
+  return fetch(`http://localhost:3333/posts/${postId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  });
 }

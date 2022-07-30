@@ -1,34 +1,34 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "Mi primera Historia",
-      "content": "Esta es la primera historia de mi vida...",
-      "userId": 1
-    },
-    {
       "id": 2,
       "title": "Mi primera Historia de Lisa",
       "content": "Esta es la primera historia de mi vida pero soy Lisa...",
       "userId": 2
     },
     {
-      "id": 3,
-      "title": "Mi segunda Historia",
+      "title": "Mi primera Historia",
       "content": "Esta es la primera historia de mi vida...",
-      "userId": 1
+      "userId": "1",
+      "id": 3
+    },
+    {
+      "title": "Mi segunda Historia",
+      "content": "Esta es la segunda historia de mi vida...",
+      "userId": "1",
+      "id": 4
     },
     {
       "title": "Mi tercer Historia",
       "content": "Esta es la tercera historia de mi vida...",
-      "userId": 1,
-      "id": 4
+      "userId": "1",
+      "id": 5
     },
     {
       "title": "Esta es mi primera publicación",
       "content": "Luego de terminar el challenge, me dedico a buscar bugs.",
       "userId": "3",
-      "id": 5
+      "id": 6
     }
   ],
   "users": [
