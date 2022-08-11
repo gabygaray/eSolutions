@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/AllPost.css";
 import Post from "./Post";
-import { getPost, deletePost } from "../services/PostService";
+import { getPost } from "../services/PostService";
 import UserContext from "../services/UserContext";
 import { Link } from "react-router-dom";
 
